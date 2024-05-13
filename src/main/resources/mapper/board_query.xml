@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- sql -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.example.enjoytrip.board.dao.BoardDao">
+    <!-- 여기서 특정양만큼의 게시글 보여주기, 닉네임 저장-->
+    <select id= "boardList" resultType="com.example.enjoytrip.board.domain.BoardDto">
+        select board_id, board_touristspot_id, board_title, board_content, board_account_nickname
+                 from board
+             order by board_id
+                limit #{pageSize} offset #{pageNum}
+    </select>
+    <!-- 여기서 글 쓴 작성자의 닉네임. 글의 제목, 내용이 보이고
+    댓글의 작성자와 내용도 보여야함
+    -->
+    <select id= "boardDetail" parameterType = "int" resultType = "com.example.enjoytrip.board.domain.BoardDto">
+        select *
+        from board
+        where board_id = #{boardId}
+    </select>
+
+    <!-- insert 자체에서 닉네임 저장-->
+    <insert id ="boardInsert" useGeneratedKeys="true"
+            keyProperty="boardId" keyColumn="board_id"
+            parameterType="com.example.enjoytrip.board.domain.BoardDto">
+        insert into board (board_touristspot_id, board_title, board_content, board_account_id, board_account_nickname)
+             values (#{boardTouristspotId},#{boardTitle},#{boardContent},#{boardAccountId},
+                     (select account_nickname
+                       from account
+                      where account_id = #{boardAccountId}
+                      )
+                 )
+    </insert>
+
+    <update id = "boardUpdate" parameterType="com.example.enjoytrip.board.domain.BoardDto">
+        update board
+            set board_id = #{boardId}
+              , board_touristspot_id = #{boardTouristspotId}
+              , board_title = #{boardTitle}
+              , board_content = #{boardContent}
+              , board_account_nickname =
+            (
+                select account_nickname as board_account_nickname
+                from account
+                where account_id = #{boardAccountId}
+            )
+        where board_id = #{boardId}
+    </update>
+
+    <delete id = "boardDelete" parameterType="int">
+        delete from board where board_id = #{boardId}
+    </delete>
+
+</mapper>

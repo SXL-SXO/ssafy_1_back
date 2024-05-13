@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.enjoytrip.touristspot.dao.TouristspotDao">
+
+    <select id="findAll" parameterType="com.example.enjoytrip.common.dto.PageDto" resultType="com.example.enjoytrip.touristspot.domain.TouristSpot">
+        select *
+        from touristspot
+        limit #{pageSize} offset #{pageNum}
+    </select>
+
+    <select id="findBySido" parameterType="map" resultType="com.example.enjoytrip.touristspot.domain.TouristSpot">
+        select *
+        from touristspot
+        where touristspot_sido_code = #{sidoCode}
+        limit #{pageDto.pageSize} offset #{pageDto.pageNum}
+    </select>
+
+    <select id="findByGugun" parameterType="map" resultType="com.example.enjoytrip.touristspot.domain.TouristSpot">
+        select *
+        from touristspot
+        where touristspot_gugun_code = #{gugunCode}
+        limit #{pageDto.pageSize} offset #{pageDto.pageNum}
+    </select>
+
+    <select id="findByKeyword" parameterType="map" resultType="com.example.enjoytrip.touristspot.domain.TouristSpot">
+        select *
+        from touristspot
+        where touristspot_title like concat('%', #{keyword}, '%')
+        limit #{pageDto.pageSize} offset #{pageDto.pageNum}
+    </select>
+
+    <select id="findById" parameterType="int" resultType="com.example.enjoytrip.touristspot.domain.TouristSpot">
+        select *
+        from touristspot
+        where touristspot_id = #{touristspotId}
+    </select>
+
+    <select id="findByCoordinates" parameterType="map" resultType="com.example.enjoytrip.touristspot.domain.TouristSpot">
+        SELECT *
+        FROM touristspot
+        WHERE touristspot_latitude &lt;= #{touristCoordinateDto.northLatitude} AND touristspot_latitude &gt;= #{touristCoordinateDto.southLatitude}
+          AND touristspot_longitude &lt;= #{touristCoordinateDto.eastLongitude} AND touristspot_longitude &gt;= #{touristCoordinateDto.westLongitude}
+            LIMIT #{pageDto.pageSize} OFFSET #{pageDto.pageNum}
+    </select>
+
+
+
+</mapper>
