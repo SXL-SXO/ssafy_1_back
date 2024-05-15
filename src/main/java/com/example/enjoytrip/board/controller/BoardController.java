@@ -29,7 +29,7 @@ public class BoardController {
         BoardDto dto = boardService.boardDetail(boardId);
         return ResponseEntity.internalServerError().body(dto);
     }
-v
+
     @PutMapping("/boards/{boardId}")
     public int boardUpdate(@PathVariable("boardId") int boardId, BoardDto dto){
         return boardService.boardUpdate(dto);
