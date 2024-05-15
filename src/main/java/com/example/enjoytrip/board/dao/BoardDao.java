@@ -13,4 +13,5 @@ public interface BoardDao {
     int boardInsert(BoardDto boardDto);
     int boardUpdate(BoardDto boardDto);
     int boardDelete(int boardId);
+    int boardRecommend(int boardId, int boardRecommend);
 }

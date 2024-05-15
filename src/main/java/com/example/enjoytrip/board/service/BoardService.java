@@ -16,5 +16,6 @@ public interface BoardService {
     int boardInsert(BoardDto boardDto);
     int boardUpdate(BoardDto boardDto);
     int boardDelete(int boardId);
+    int boardRecommend(int boardId, int boardRecommend);
     List<CommentDto> commentList(int commentBoardId);
 }

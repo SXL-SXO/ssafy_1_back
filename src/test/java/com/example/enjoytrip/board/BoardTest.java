@@ -166,4 +166,6 @@ class BoardTest {
         assertEquals(boardService.boardDetail(boardDto.getBoardId()).getBoardTitle(), boardDto.getBoardTitle());
         assertEquals(boardService.boardDetail(boardDto.getBoardId()).getBoardContent(), boardDto.getBoardContent());
     }
+
+//    @Test
 }

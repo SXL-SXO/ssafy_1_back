@@ -50,6 +50,11 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
+    public int boardRecommend(int boardId, int boardRecommend) {
+        return boardDao.boardRecommend(boardId, boardRecommend+1);
+    }
+
+    @Override
     public List<CommentDto> commentList(int commentBoardId) {
         return commentDao.commentList(commentBoardId);
     }

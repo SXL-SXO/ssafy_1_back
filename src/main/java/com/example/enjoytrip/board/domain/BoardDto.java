@@ -19,5 +19,6 @@ public class BoardDto {
     private String boardContent;
     private String boardAccountNickname;
     private int boardAccountId;
+    private int boardRecommend;
     private List<CommentDto> boardComment;
 }

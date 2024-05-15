@@ -29,10 +29,15 @@ public class BoardController {
         BoardDto dto = boardService.boardDetail(boardId);
         return ResponseEntity.internalServerError().body(dto);
     }
-
+v
     @PutMapping("/boards/{boardId}")
     public int boardUpdate(@PathVariable("boardId") int boardId, BoardDto dto){
         return boardService.boardUpdate(dto);
+    }
+
+    @PutMapping("/boards/recommend/{boardId}")
+    public int boardRecommend(@PathVariable("boardId") int boardId, int boardRecommend){
+        return boardService.boardRecommend(boardId, boardRecommend);
     }
 
     @PostMapping("/boards/{boardId}")
