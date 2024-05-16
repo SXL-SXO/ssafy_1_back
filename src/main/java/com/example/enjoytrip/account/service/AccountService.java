@@ -7,6 +7,7 @@ import com.example.enjoytrip.account.dto.AccountResponseDto;
 public interface AccountService {
     Integer join(AccountRequestDto accountRequestDto);
     AccountResponseDto findById(Integer accountId);
+    Integer findByEmail(String accountEmail);
     int update(Account account);
     int delete(Integer accountId);
 }

@@ -24,6 +24,12 @@ public class AccountController {
         return ResponseEntity.status(HttpStatus.CREATED).body(accountService.join(accountRequestDto));
     }
 
+    @PostMapping("/{accountEmail}")
+    public ResponseEntity<Integer> findByEmail(@PathVariable("accountEmail") String accountEmail){
+        System.out.println("controller - check");
+        return ResponseEntity.ok(accountService.findByEmail(accountEmail));
+    }
+
     @GetMapping("/{accountId}")
     public ResponseEntity<AccountResponseDto> findById(@PathVariable("accountId") Integer accountId){
         return ResponseEntity.ok(accountService.findById(accountId));

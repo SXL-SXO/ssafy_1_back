@@ -19,7 +19,7 @@ class WeatherClientIntegrationTest {
         int numOfRows = 50;
         int pageNo = 1;
         String dataType = "json";
-        String baseDate = "20240425";
+        String baseDate = "20240516";
         String baseTime = "0500";
         int nx = 55;
         int ny = 127;

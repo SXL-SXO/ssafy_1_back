@@ -48,7 +48,7 @@
             )
         where board_id = #{boardId}
     </update>
-    <update id = "boardUpdate">
+    <update id = "boardRecommendUpdate">
         update board
         set board_recommend = #{boardRecommend}
         where board_id = #{boardId}

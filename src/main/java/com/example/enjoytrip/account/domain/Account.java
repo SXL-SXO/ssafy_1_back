@@ -12,6 +12,8 @@ public class Account {
     private String accountEmail;
     private String accountPassword;
     private String accountNickname;
+    private String accountProfileImage;
     private AccountRole accountRole;
+    private AccountMbti accountMbti;
 
 }

@@ -37,6 +37,16 @@ public class AccountServiceImpl implements AccountService{
     }
 
     @Override
+    public Integer findByEmail(String accountEmail) {
+        Account byEmail = accountDao.findByEmail(accountEmail);
+        System.out.println(byEmail);
+        if(byEmail != null){
+            throw new CustomException(ErrorCode.DuplicateUserEmail);
+        }
+        return 1;
+    }
+
+    @Override
     public AccountResponseDto findById(Integer accountId) {
         Account byId = accountDao.findById(accountId);
         AccountResponseDto responseDto = modelMapper.map(byId, AccountResponseDto.class);
