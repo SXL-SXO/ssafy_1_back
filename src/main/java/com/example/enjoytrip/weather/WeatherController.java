@@ -20,7 +20,7 @@ public class WeatherController {
 
     private final WeatherClient weatherClient;
 
-    @GetMapping
+    @PostMapping
     public ResponseEntity<String> getVilageFcst(@Valid @RequestBody WeatherRequestDto weatherRequestDto
                                                 , Errors errors){
         if(errors.hasErrors()){
